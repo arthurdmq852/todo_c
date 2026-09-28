@@ -10,8 +10,8 @@ void list_todos() {
     fprintf(stderr,"No task available (--add to add one)");
   //} else if {
     //file exists but is empty, maybe try something like "fptr == null || fptr == empty"
-    } else {
+  } else {
     printf("LIST");
+    fclose(fptr);
   }
-  fclose(fptr);
 }
