@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 #include "add_todo.h"
+#include "remove_todo.h" 
+#include "list_todos.h"
 
 int main(int argc, char *argv[]) {
-
-  FILE* fptr;
 
   // Missing an argument
   if (argc <= 1) {
@@ -22,31 +22,13 @@ int main(int argc, char *argv[]) {
   } else if 
     (strcmp(argv[1], "-rm") == 0 || 
     (strcmp(argv[1], "--remove") == 0)) {
-
-    fptr = fopen("test.txt", "r");
-    fclose(fptr);
-
-    printf("REMOVE");
-  
+      remove_todo();
 
     // Read the content of the list
   } else if 
     (strcmp(argv[1], "-l") == 0 || 
-    (strcmp(argv[1], "--list") == 0)) {
-
-  // I also have to verify if the content is empty or not, if it is, printf("No task available (--add to add another one)")
-    fptr = fopen("test.txt", "r");
-
-    // The problem here is that the file doesn't exist, I have to verify if it exists before doing this condition
-    if (fptr == NULL) {
-      printf("Error opening file");
-    } else if (fptr = NULL) {
-      printf("No task available (--add to add another one)");
-    }
-
-    fclose(fptr);
-
-    printf("LIST");
+    (strcmp(argv[1], "--list") == 0)) { 
+      list_todos();
 
     // Help command
   } else if (strcmp(argv[1], "--help") == 0) {
