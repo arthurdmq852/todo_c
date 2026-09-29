@@ -1,8 +1,8 @@
 #include <stdio.h>
+#include <sys/stat.h>
 
 void list_todos() {
   FILE* fptr;
-  int size;
 
 // I also have to verify if the content is empty or not, if it is, printf("No task available (--add to add another one)")
   fptr = fopen("test.txt", "rb");
@@ -13,14 +13,15 @@ void list_todos() {
 
   // FPTR exists but is empty
   } else if (fptr != NULL) {
-    fseek (fptr, 0, SEEK_END);
-    size = ftell(fptr);
-  
-      if (size == 0) {
-        fprintf(stderr,"EMPTY No task available (--add to add one)");
+    struct stat st;
+
+      if (stat("test.txt", &st) == 0) {
+        if (st.st_size == 0 ) {
+          fprintf(stderr,"EMPTY No task available (--add to add one)");
       } else {
         printf("LIST");
-        fclose(fptr);
+    }
+      fclose(fptr);
     }
   }
 }
