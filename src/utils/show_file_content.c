@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <sys/stat.h>
 
-void list_todos() {
+void show_file_content() {
   FILE* fptr;
 
 // I also have to verify if the content is empty or not, if it is, printf("No task available (--add to add another one)")
@@ -9,7 +9,7 @@ void list_todos() {
 
   // FPTR doesn't exist in the directory
   if (fptr == NULL) {
-    fprintf(stderr,"NULL No task available (--add to add one)");
+    fprintf(stderr,"No task available (Use --add to add one)");
 
   // FPTR exists but is empty
   } else if (fptr != NULL) {
@@ -17,11 +17,14 @@ void list_todos() {
 
       if (stat("test.txt", &st) == 0) {
         if (st.st_size == 0 ) {
-          fprintf(stderr,"EMPTY No task available (--add to add one)");
-      } else {
-        printf("LIST");
-    }
-      fclose(fptr);
-    }
+          fprintf(stderr,"No task available (Use --add to add one)");
+        } else {
+          char buff[100];
+          while (fgets(buff, sizeof(buff), fptr) != NULL) {
+            printf("%s", buff);
+          }
+        }
+      }
+    fclose(fptr);
   }
 }

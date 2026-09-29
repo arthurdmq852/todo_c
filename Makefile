@@ -1,23 +1,19 @@
 CC      = gcc
-CFLAGS  = -Wall -Wextra -Werror -std=c11 -Iinclude -MMD -MP
-SRCS    = $(wildcard src/*.c)
-BUILD   = build
-OBJS    = $(SRCS:src/%.c=$(BUILD)/%.o)
-TARGET  = todo
+CFLAGS  = -Wall -Wextra -std=c11 -Iinclude
+SRC     = $(shell find src -name '*.c')
+OBJ     = $(SRC:src/%.c=build/%.o)
+BIN     = build/todo
 
-all: $(TARGET)
-	@rm -rf $(BUILD)
+all: $(BIN)
 
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $@
+$(BIN): $(OBJ)
+	$(CC) $(OBJ) -o $@
 
-$(BUILD)/%.o: src/%.c
-	@mkdir -p $(BUILD)
+build/%.o: src/%.c
+	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(BUILD) $(TARGET)
-
--include $(OBJS:.o=.d)
+	rm -rf build
 
 .PHONY: all clean
