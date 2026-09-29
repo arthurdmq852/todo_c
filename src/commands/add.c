@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void add_todo() {
+void cmd_add() {
   FILE* fptr;
   char task[50];
 

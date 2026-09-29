@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "file_utils.h"
 
 int show_file() {
   FILE* fptr;

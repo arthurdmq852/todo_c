@@ -1,1 +1,3 @@
 Makefile.backup
+build/
+test.txt
