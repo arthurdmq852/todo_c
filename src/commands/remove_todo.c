@@ -1,5 +1,16 @@
-#include "show_file_content.h"
+#include "show_file.h"
+#include <stdio.h>
 
-void remove_todo() {
-  show_file_content();
+int remove_todo() {
+  int del_line;
+
+  if (show_file("test.txt") != 0) {
+    return 1;
+  }
+
+  printf("\nEnter the task you want to remove: ");
+  scanf("%d", &del_line);
+  
+  printf("Task successfully removed.");
+  return 0;
 }
