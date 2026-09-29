@@ -3,6 +3,7 @@
 #include "add_todo.h"
 #include "remove_todo.h" 
 #include "list_todos.h"
+#include "print_help.h"
 
 int main(int argc, char *argv[]) {
 
@@ -32,7 +33,7 @@ int main(int argc, char *argv[]) {
 
     // Help command
   } else if (strcmp(argv[1], "--help") == 0) {
-    printf("HELP");
+      print_help();
 
     // Invalid operand
   } else {
