@@ -1,25 +1,23 @@
-CC      := gcc
-CFLAGS  := -Wall -Wextra -Wpedantic -std=c11 -g -Iinclude -MMD -MP
-TARGET  := build/todo
-SRCS    := $(wildcard src/*.c)
-OBJS    := $(patsubst src/%.c,build/%.o,$(SRCS))
-DEPS    := $(OBJS:.o=.d)
-
-.PHONY: all run clean
+CC      = gcc
+CFLAGS  = -Wall -Wextra -Werror -std=c11 -Iinclude -MMD -MP
+SRCS    = $(wildcard src/*.c)
+BUILD   = build
+OBJS    = $(SRCS:src/%.c=$(BUILD)/%.o)
+TARGET  = todo
 
 all: $(TARGET)
+	@rm -rf $(BUILD)
 
 $(TARGET): $(OBJS)
-	$(CC) $^ -o $@
+	$(CC) $(CFLAGS) $(OBJS) -o $@
 
-build/%.o: src/%.c
-	@mkdir -p $(dir $@)
+$(BUILD)/%.o: src/%.c
+	@mkdir -p $(BUILD)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-run: $(TARGET)
-	./$(TARGET)
-
 clean:
-	rm -rf build
+	rm -rf $(BUILD) $(TARGET)
 
--include $(DEPS)
+-include $(OBJS:.o=.d)
+
+.PHONY: all clean
