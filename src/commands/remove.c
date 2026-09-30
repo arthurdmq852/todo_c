@@ -11,8 +11,9 @@ int cmd_remove() {
 
   printf("\nEnter the task you want to remove: ");
   scanf("%d", &del_line);
-
   
+
+   
   printf("Task successfully removed.");
   return 0;
 }

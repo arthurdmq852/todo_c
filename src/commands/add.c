@@ -4,7 +4,7 @@ void cmd_add() {
   FILE* fptr;
   char task[50];
 
-  fptr = fopen("test.txt", "a");
+  fptr = fopen("/home/nice/.local/share/todo/todos.txt", "a");
 
   printf("Enter a task: ");
   scanf("%s", task);

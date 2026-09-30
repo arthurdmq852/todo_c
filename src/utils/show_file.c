@@ -4,7 +4,7 @@
 int show_file() {
   FILE* fptr;
 // I also have to verify if the content is empty or not, if it is, printf("No task available (--add to add another one)")
-   fptr = fopen("test.txt", "r");
+   fptr = fopen("/home/nice/.local/share/todo/todos.txt", "r");
 
   // FPTR doesn't exist in the directory
   if (fptr == NULL) {
